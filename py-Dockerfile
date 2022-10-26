@@ -1,0 +1,10 @@
+FROM python:3.10.7-slim-buster
+
+WORKDIR usr/src/flask_app
+COPY flask/ .
+
+RUN apt-get update
+RUN apt-get -y install make
+RUN make
+
+ENV FLASK_APP=app

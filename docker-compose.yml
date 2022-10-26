@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+    flask:
+        build:
+            context: .
+            dockerfile: py-Dockerfile
+        container_name: flask
+        command: flask run --host=0.0.0.0
+        ports:
+            - "5000:5000"
+    ngin:
+        build:
+            context: .
+            dockerfile: ngin-Dockerfile
+        container_name: nginx_flask
+        depends_on:
+            - flask
+        ports:
+            - "80:80"
